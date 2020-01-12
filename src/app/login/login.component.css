@@ -1,0 +1,60 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100vh;
+    background-color: #002E98;
+    display: flex;
+    align-items: center;
+}
+
+.login-container {
+    position: absolute;
+    left: 0%;
+    width: 100%;
+    height: 77vh;
+    background-color: #597CDA;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-width: 0;
+    border-top-width: 0.4vh;
+    border-bottom-width: 0.4vh;
+    border-style: solid;
+    border-image: linear-gradient(
+        to right, 
+        white, 
+        rgba(0, 0, 0, 0)
+    ) 1 30%;
+}
+
+.account-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    color: white;
+    font-size: 4vh;
+    font-family: Segoe UI;
+}
+
+.account-container span {
+    margin-left: 3vh;
+}
+
+.avatar {
+    height: 15vh;
+}
+
+.avatar img {
+    height: 100%;
+    border-radius: 10%;
+    border: 0.4vh solid lightgrey;
+}

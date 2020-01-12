@@ -1,0 +1,64 @@
+<div class="container">  
+    
+    <!-- Picture -->
+    <div class="picture-container" *ngIf="pictureId != 0" (click)="pictureId = 0">
+        <img src="../../assets/my-photos/{{pictureId}}.jpg" alt="picture of Jorrit Schepers">
+    </div>
+
+    <!-- Tic Tac Toe -->
+    <div [style.zIndex]="tttZIndex" class="ttt-container" (click)="moveTttToFront()" *ngIf="showingTicTacToe" cdkDrag>
+        <div class="ttt-header">
+            <span>Tic Tac Toe</span>
+        </div>
+        <div class="ttt-body">
+
+        </div>
+    </div>
+
+    <!-- Word -->
+    <!-- cdkDragBoundary=".container" -->
+    <div [style.zIndex]="wordZIndex" class="word-container" (click)="moveWordToFront()" cdkDrag>
+        <div class="word-header" cdkDragHandle>
+            <img src="../../assets/icons/save-icon-whitepng.png" alt="Save icon">
+        </div>
+        <div class="word-body">
+            <div class="word-toolbar">
+                
+            </div>
+            <div class="word-page">
+                hoi
+            </div>
+        </div>
+    </div>
+
+    <!-- CMD -->
+    <!-- cdkDragBoundary=".container" -->
+    <div [style.zIndex]="cmdZIndex" class="cmd-container"  (click)="moveCmdToFront()" cdkDrag >
+        <div class="cmd-header" cdkDragHandle>
+            <img src="../../assets/icons/cmd-icon-white.png" alt="cmd icon">
+            <span>a great interface!</span>
+        </div>
+        <div class="cmd-body">
+            <span>C:\Users\JorritSchepers>_</span><br>
+            <br>
+            <span>C:\Users\JorritSchepers>dir</span><br>
+            <br>
+            <span>Directory of C:\Users\JorritSchepers</span><br>
+            <br>
+            <a routerLink="/about-me" routerLinkActive="active"><span>07/01/2020 23:31 &nbsp; &lt;DIR&gt; &nbsp;&nbsp;&nbsp; about-me</span></a><br>
+            <a routerLink="/my-projects" routerLinkActive="active"><span>10/01/2020 19:01 &nbsp; &lt;DIR&gt; &nbsp;&nbsp;&nbsp; my-projects</span></a><br>
+            <a routerLink="/contact-me" routerLinkActive="active"><span>15/01/2020 03:54 &nbsp; &lt;DIR&gt; &nbsp;&nbsp;&nbsp; contact-me</span></a><br>
+        </div>
+    </div>
+
+    <!-- Desktop Icons -->
+    <div class="desktop-icon" (click)="pictureId = 1">
+        <img src="https://handiggoed.nl/ontwikkelsite/wp-content/uploads/2015/12/IETS-400x400.jpg">
+        <span>Jorrit.jpg</span>
+    </div>
+
+    <div class="desktop-icon" (click)="openTtt()">
+        <img src="https://handiggoed.nl/ontwikkelsite/wp-content/uploads/2015/12/IETS-400x400.jpg">
+        <span>tic-tac-toe.exe</span>
+    </div>
+</div>
