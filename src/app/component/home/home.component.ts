@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
+import { TTTModel } from '../../model/ttt.model';
+
 const CMD_ID: number = 1;
 const WORD_ID: number = 2;
 const TTT_ID: number = 3;
@@ -11,11 +13,16 @@ const TTT_ID: number = 3;
 })
 export class HomeComponent {
   pictureId: number = 0;
+
   showingTicTacToe: boolean = false;
+  showingWord: boolean = false;
+  showingCmd: boolean = false;
+
   pageZIndexes: number[] = [TTT_ID, WORD_ID, CMD_ID]
   wordZIndex: number = 1;
   cmdZIndex: number = 1;
   tttZIndex: number = 1;
+  ttt: TTTModel = new TTTModel();
 
   constructor(private titleService: Title) {
     this.titleService.setTitle("Jorrit's Website | Home")
@@ -47,6 +54,16 @@ export class HomeComponent {
     this.cmdZIndex = this.getCurrentIndex(CMD_ID)+1;
     this.wordZIndex = this.getCurrentIndex(WORD_ID)+1;
     this.tttZIndex = this.getCurrentIndex(TTT_ID)+1;
+  }
+
+  openCmd(): void {
+    this.moveCmdToFront();
+    this.showingCmd = true
+  }
+
+  openWord(): void {
+    this.moveWordToFront();
+    this.showingWord = true
   }
 
   openTtt(): void {

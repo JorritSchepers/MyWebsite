@@ -1,25 +1,32 @@
 <div class="container">  
-    
     <!-- Picture -->
     <div class="picture-container" *ngIf="pictureId != 0" (click)="pictureId = 0">
-        <img src="../../assets/my-photos/{{pictureId}}.jpg" alt="picture of Jorrit Schepers">
+        <img src="../../../assets/my-photos/{{pictureId}}.jpg" alt="picture of Jorrit Schepers">
     </div>
 
     <!-- Tic Tac Toe -->
     <div [style.zIndex]="tttZIndex" class="ttt-container" (click)="moveTttToFront()" *ngIf="showingTicTacToe" cdkDrag>
-        <div class="ttt-header">
+        <div class="ttt-header" cdkDragHandle>
             <span>Tic Tac Toe</span>
         </div>
         <div class="ttt-body">
-
+            <div class="ttt-end-screen" *ngIf="ttt.playerWon != null" (click)="ttt.resetGame()">
+                <span *ngIf="ttt.playerWon == 'cross'" style="color: rgb(0, 200, 0)">You won!</span>
+                <span *ngIf="ttt.playerWon == 'circle'" style="color: red">You lost</span>
+                <span *ngIf="ttt.playerWon == 'draw'" style="color: grey">Draw!</span>
+            </div>
+            <div class="ttt-row" *ngFor="let row of ttt.fieldOfPaths; let y = index">
+                <div class="ttt-column" *ngFor="let tile of row; let x = index">
+                    <img src="{{ttt.fieldOfPaths[y][x]}}" (click)="ttt.clickedOn(x, y)">
+                </div>
+            </div>
         </div>
     </div>
 
     <!-- Word -->
-    <!-- cdkDragBoundary=".container" -->
-    <div [style.zIndex]="wordZIndex" class="word-container" (click)="moveWordToFront()" cdkDrag>
+    <div [style.zIndex]="wordZIndex" class="word-container" *ngIf="showingWord" (click)="moveWordToFront()" cdkDrag>
         <div class="word-header" cdkDragHandle>
-            <img src="../../assets/icons/save-icon-whitepng.png" alt="Save icon">
+            <img src="../../../assets/icons/save-icon-whitepng.png" alt="Save icon">
         </div>
         <div class="word-body">
             <div class="word-toolbar">
@@ -32,11 +39,11 @@
     </div>
 
     <!-- CMD -->
-    <!-- cdkDragBoundary=".container" -->
-    <div [style.zIndex]="cmdZIndex" class="cmd-container"  (click)="moveCmdToFront()" cdkDrag >
+    <div [style.zIndex]="cmdZIndex" class="cmd-container"  (click)="moveCmdToFront()" *ngIf="showingCmd" cdkDrag>
         <div class="cmd-header" cdkDragHandle>
-            <img src="../../assets/icons/cmd-icon-white.png" alt="cmd icon">
+            <img src="../../../assets/icons/cmd-icon-white.png" alt="cmd icon">
             <span>a great interface!</span>
+            <img src="../../../assets/icons/close-button" alt="close button">
         </div>
         <div class="cmd-body">
             <span>C:\Users\JorritSchepers>_</span><br>
@@ -53,20 +60,31 @@
 
     <!-- Desktop Icons -->
     <div class="desktop-icon" (click)="pictureId = 1">
-        <img src="https://handiggoed.nl/ontwikkelsite/wp-content/uploads/2015/12/IETS-400x400.jpg">
+        <img src="../../../assets/my-photos/1.jpg">
         <span>Jorrit.jpg</span>
     </div>
 
     <div class="desktop-icon" (click)="openTtt()">
-        <img src="https://handiggoed.nl/ontwikkelsite/wp-content/uploads/2015/12/IETS-400x400.jpg">
+        <img src="../../../assets/ttt/cross/mm.png">
         <span>tic-tac-toe.exe</span>
     </div>
 
+    <div class="desktop-icon" (click)="openCmd()">
+        <img src="../../../assets/icons/cmd-icon-white.png">
+        <span>cmd.exe</span>
+    </div>
+
+    <div class="desktop-icon" (click)="openWord()">
+        <img src="../../../assets/icons/save-icon-whitepng.png">
+        <span>fancy word pad.exe</span>
+    </div>
+
     <!-- Taskbar -->
-    <div class="taskbar">
+    <div class="taskbar-container">
         <div class="taskbar-windows-logo">
-            <img src="../../assets/icons/windows-logo-icon.png" alt="WindowsXP logo">
+            <img src="../../../assets/icons/windows-logo-icon.png" alt="WindowsXP logo">
             <span><i><b>start</b></i></span>
         </div>
+        <div class="taskbar"></div>
     </div>
 </div>
