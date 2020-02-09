@@ -123,7 +123,6 @@ export class TTTModel {
     private AlgoChooseRandom(): void {
         let randomY: number = this.getRandomInt(this.field.length);
         let randomX: number = this.getRandomInt(this.field[0].length);
-        console.log("chosen x:", randomX, "and y:", randomY);
         if (this.field[randomY][randomX] != "empty") return;
         else this.clickedOn(randomX, randomY);
     }

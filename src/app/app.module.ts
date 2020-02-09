@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {DragDropModule} from '@angular/cdk/drag-drop';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './component/home/home.component';
@@ -17,6 +19,8 @@ import { LoginComponent } from './component/login/login.component';
     BrowserModule
     ,AppRoutingModule
     ,DragDropModule 
+    ,FormsModule
+    ,ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [

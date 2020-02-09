@@ -24,7 +24,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
+    background-image: radial-gradient(
+        farthest-corner at 40px 40px,
+        rgba(255, 255, 255, 0.5) 0%,
+        #597CDA 100%
+    );
+    
     border-width: 0;
     border-top-width: 0.4vh;
     border-bottom-width: 0.4vh;

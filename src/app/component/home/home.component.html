@@ -5,7 +5,7 @@
     </div>
 
     <!-- Tic Tac Toe -->
-    <div [style.zIndex]="tttZIndex" class="ttt-container" (click)="moveTttToFront()" *ngIf="showingTicTacToe" cdkDrag>
+    <div [style.zIndex]="tttZIndex" class="ttt-container" (click)="moveTabToFront(TTT_ID)" *ngIf="showingTicTacToe" cdkDrag>
         <div class="ttt-header" cdkDragHandle>
             <span>Tic Tac Toe</span>
         </div>
@@ -24,7 +24,7 @@
     </div>
 
     <!-- Word -->
-    <div [style.zIndex]="wordZIndex" class="word-container" *ngIf="showingWord" (click)="moveWordToFront()" cdkDrag>
+    <div [style.zIndex]="wordZIndex" class="word-container" *ngIf="showingWord" (click)="moveTabToFront(WORD_ID)" cdkDrag>
         <div class="word-header" cdkDragHandle>
             <img src="../../../assets/icons/save-icon-whitepng.png" alt="Save icon">
         </div>
@@ -39,7 +39,7 @@
     </div>
 
     <!-- CMD -->
-    <div [style.zIndex]="cmdZIndex" class="cmd-container"  (click)="moveCmdToFront()" *ngIf="showingCmd" cdkDrag>
+    <div [style.zIndex]="cmdZIndex" class="cmd-container"  (click)="moveTabToFront(CMD_ID)" *ngIf="showingCmd" cdkDrag>
         <div class="cmd-header" cdkDragHandle>
             <img src="../../../assets/icons/cmd-icon-white.png" alt="cmd icon">
             <span>a great interface!</span>
@@ -57,6 +57,24 @@
             <a routerLink="/contact-me" routerLinkActive="active"><span>15/01/2020 03:54 &nbsp; &lt;DIR&gt; &nbsp;&nbsp;&nbsp; contact-me</span></a><br>
         </div>
     </div>
+    
+    <!-- Browser -->
+    <div [style.zIndex]="browserZIndex" class="browser-container"  (click)="moveTabToFront(BROWSER_ID)" *ngIf="showingBrowser" cdkDrag>
+        <div class="browser-header" cdkDragHandle>
+            <img src="https://handiggoed.nl/ontwikkelsite/wp-content/uploads/2015/12/IETS-400x400.jpg" alt="browser icon">
+            <span>The little less dark web</span>
+        </div>
+        <div class="browser-body">
+            <!-- <iframe src=asd *ngIf="currentSearchWordUrl != null"></iframe> -->
+            <!-- <iframe src="sanitizer.bypassSecurityTrustUrl(currentSearchWordUrl)" *ngIf="currentSearchWordUrl != null"></iframe> -->
+            <!-- <div class="browser-search-box" *ngIf="currentSearchWordUrl == null"> -->
+            <div class="browser-search-box">
+                <form [formGroup]="searchForm" (ngSubmit)="searchWord(searchForm.value)">
+                    <input id="word" class="browser-search-input" type="text" formControlName="word" placeholder="Search for anything!" required>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <!-- Desktop Icons -->
     <div class="desktop-icon" (click)="pictureId = 1">
@@ -64,19 +82,24 @@
         <span>Jorrit.jpg</span>
     </div>
 
-    <div class="desktop-icon" (click)="openTtt()">
+    <div class="desktop-icon" (click)="openTab(TTT_ID)">
         <img src="../../../assets/ttt/cross/mm.png">
         <span>tic-tac-toe.exe</span>
     </div>
 
-    <div class="desktop-icon" (click)="openCmd()">
+    <div class="desktop-icon" (click)="openTab(CMD_ID)">
         <img src="../../../assets/icons/cmd-icon-white.png">
         <span>cmd.exe</span>
     </div>
 
-    <div class="desktop-icon" (click)="openWord()">
+    <div class="desktop-icon" (click)="openTab(WORD_ID)">
         <img src="../../../assets/icons/save-icon-whitepng.png">
         <span>fancy word pad.exe</span>
+    </div>
+
+    <div class="desktop-icon" (click)="openTab(BROWSER_ID)">
+        <img src="https://handiggoed.nl/ontwikkelsite/wp-content/uploads/2015/12/IETS-400x400.jpg">
+        <span>a light browser.exe</span>
     </div>
 
     <!-- Taskbar -->

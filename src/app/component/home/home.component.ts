@@ -2,73 +2,72 @@ import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
 import { TTTModel } from '../../model/ttt.model';
-
-const CMD_ID: number = 1;
-const WORD_ID: number = 2;
-const TTT_ID: number = 3;
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+  CMD_ID: number = 1;
+  WORD_ID: number = 2;
+  TTT_ID: number = 3;
+  BROWSER_ID: number = 4;
+
   pictureId: number = 0;
 
   showingTicTacToe: boolean = false;
   showingWord: boolean = false;
   showingCmd: boolean = false;
+  showingBrowser: boolean = false;
 
-  pageZIndexes: number[] = [TTT_ID, WORD_ID, CMD_ID]
+  pageZIndexes: number[] = [this.TTT_ID, this.WORD_ID, this.CMD_ID, this.BROWSER_ID];
   wordZIndex: number = 1;
   cmdZIndex: number = 1;
-  tttZIndex: number = 1;
+  tttZIndex: number = 1
+  browserZIndex: number = 1;
+
   ttt: TTTModel = new TTTModel();
 
-  constructor(private titleService: Title) {
-    this.titleService.setTitle("Jorrit's Website | Home")
+  searchForm: any;
+  currentSearchWordUrl: string;
+
+  constructor(private titleService: Title, private formBuilder: FormBuilder) {
+    this.titleService.setTitle("Jorrit's Website | Home");
+    this.searchForm = this.formBuilder.group({
+      word: ''
+    });
   }
 
-  changePath(path: string): void {
-    window.location.pathname = path;
-  }
-
-  moveWordToFront(): void {
-    this.pageZIndexes.splice(this.getCurrentIndex(WORD_ID), 1);
-    this.pageZIndexes.push(WORD_ID);
-    this.updateAllIndexes();
-  }
-  
-  moveCmdToFront(): void {
-    this.pageZIndexes.splice(this.getCurrentIndex(CMD_ID), 1);
-    this.pageZIndexes.push(CMD_ID);
-    this.updateAllIndexes();
-  }
-
-  moveTttToFront(): void {
-    this.pageZIndexes.splice(this.getCurrentIndex(TTT_ID), 1);
-    this.pageZIndexes.push(TTT_ID);
+  moveTabToFront(id: number): void {
+    this.pageZIndexes.splice(this.getCurrentIndex(id), 1);
+    this.pageZIndexes.push(id);
     this.updateAllIndexes();
   }
 
   updateAllIndexes(): void {
-    this.cmdZIndex = this.getCurrentIndex(CMD_ID)+1;
-    this.wordZIndex = this.getCurrentIndex(WORD_ID)+1;
-    this.tttZIndex = this.getCurrentIndex(TTT_ID)+1;
+    this.cmdZIndex = this.getCurrentIndex(this.CMD_ID)+1;
+    this.wordZIndex = this.getCurrentIndex(this.WORD_ID)+1;
+    this.tttZIndex = this.getCurrentIndex(this.TTT_ID)+1;
+    this.browserZIndex = this.getCurrentIndex(this.BROWSER_ID)+1;
   }
 
-  openCmd(): void {
-    this.moveCmdToFront();
-    this.showingCmd = true
-  }
-
-  openWord(): void {
-    this.moveWordToFront();
-    this.showingWord = true
-  }
-
-  openTtt(): void {
-    this.moveTttToFront();
-    this.showingTicTacToe = true
+  openTab(id: number): void {
+    this.moveTabToFront(id);
+    switch (id) {
+      case this.CMD_ID:
+        this.showingCmd = true;
+        break;
+      case this.WORD_ID:
+        this.showingWord = true;
+        break;
+      case this.TTT_ID:
+        this.showingTicTacToe = true;
+        break;
+      case this.BROWSER_ID:
+        this.showingBrowser = true;
+        break;
+    }
   }
 
   private getCurrentIndex(id: number): number {
@@ -76,5 +75,10 @@ export class HomeComponent {
       if (this.pageZIndexes[i] == id) return i;
     }
     return -1;
+  }
+
+  searchWord(formValue: any): void {
+    this.currentSearchWordUrl = "https://www.google.com/search?q=" + formValue.word;
+    window.open(this.currentSearchWordUrl);
   }
 }
