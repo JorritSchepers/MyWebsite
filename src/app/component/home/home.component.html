@@ -1,15 +1,33 @@
 <div class="container">  
+    <!-- Start -->
+    <div class="start-container" *ngIf="showingStart">
+        <div class="start-toprow"> 
+            <img src="../../../assets/avatar.jpg" alt="Avater"/>
+            <span> Jorrit Schepers </span>
+        </div>
+        <div class="start-midrow">
+        </div> 
+        <div class="start-bottomrow">
+            <div class="start-logoff-container">
+                <img src="../../../assets/icons/logoff-icon.jpg" alt="Log off button" (click)="logout()">
+                <span> Log Off </span>
+            </div>
+        </div>
+    </div>
+
     <!-- Picture -->
     <div class="picture-container" *ngIf="pictureId != 0" (click)="pictureId = 0">
         <img src="../../../assets/my-photos/{{pictureId}}.jpg" alt="picture of Jorrit Schepers">
     </div>
 
     <!-- Tic Tac Toe -->
-    <div [style.zIndex]="tttZIndex" class="ttt-container" (click)="moveTabToFront(TTT_ID)" *ngIf="showingTicTacToe" cdkDrag>
-        <div class="ttt-header" cdkDragHandle>
+    <div [style.zIndex]="tttZIndex" class="tab-container" id="ttt-container" (click)="moveTabToFront(TTT_ID)" *ngIf="showingTicTacToe" cdkDrag>
+        <div class="tab-header" id="ttt-header" cdkDragHandle>
+            <img src="../../../assets/ttt/cross/mm.png" alt="Tic Tac Toe Icon">
             <span>Tic Tac Toe</span>
+            <img src="../../../assets/icons/close-icon-white.png" alt="close button" (click)="closeTab(TTT_ID)">
         </div>
-        <div class="ttt-body">
+        <div class="tab-body" id="ttt-body">
             <div class="ttt-end-screen" *ngIf="ttt.playerWon != null" (click)="ttt.resetGame()">
                 <span *ngIf="ttt.playerWon == 'cross'" style="color: rgb(0, 200, 0)">You won!</span>
                 <span *ngIf="ttt.playerWon == 'circle'" style="color: red">You lost</span>
@@ -24,28 +42,30 @@
     </div>
 
     <!-- Word -->
-    <div [style.zIndex]="wordZIndex" class="word-container" *ngIf="showingWord" (click)="moveTabToFront(WORD_ID)" cdkDrag>
-        <div class="word-header" cdkDragHandle>
+    <div [style.zIndex]="wordZIndex" class="tab-container" id="word-container" *ngIf="showingWord" (click)="moveTabToFront(WORD_ID)" cdkDrag>
+        <div class="tab-header" id="word-header" cdkDragHandle>
             <img src="../../../assets/icons/save-icon-whitepng.png" alt="Save icon">
+            <span>Fancy wordpad</span>
+            <img src="../../../assets/icons/close-icon-white.png" alt="close button" (click)="closeTab(WORD_ID)">
         </div>
-        <div class="word-body">
-            <div class="word-toolbar">
-                
-            </div>
+        <div class="tab-body" id="word-body">
+            <div class="word-toolbar"></div>
             <div class="word-page">
-                hoi
+                <div class="word-page-text">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem nihil in repellat cupiditate nostrum beatae quis enim? Ipsum temporibus quo reprehenderit non sunt perspiciatis exercitationem ut et assumenda numquam! Natus dolorem excepturi aliquid tenetur dolores, autem, eligendi minima vitae mollitia a eveniet enim quidem iure incidunt fugiat aut qui molestias neque quas sit, reiciendis veniam impedit. Tenetur laboriosam expedita ipsam?
+                </div>
             </div>
         </div>
     </div>
 
     <!-- CMD -->
-    <div [style.zIndex]="cmdZIndex" class="cmd-container"  (click)="moveTabToFront(CMD_ID)" *ngIf="showingCmd" cdkDrag>
-        <div class="cmd-header" cdkDragHandle>
+    <div [style.zIndex]="cmdZIndex" class="tab-container" id="cmd-container" (click)="moveTabToFront(CMD_ID)" *ngIf="showingCmd" cdkDrag>
+        <div class="tab-header" id="cmd-header" cdkDragHandle>
             <img src="../../../assets/icons/cmd-icon-white.png" alt="cmd icon">
-            <span>a great interface!</span>
-            <img src="../../../assets/icons/close-button" alt="close button">
+            <span>A great interface!</span>
+            <img src="../../../assets/icons/close-icon-white.png" alt="close button" (click)="closeTab(CMD_ID)">
         </div>
-        <div class="cmd-body">
+        <div class="tab-body" id="cmd-body">
             <span>C:\Users\JorritSchepers>_</span><br>
             <br>
             <span>C:\Users\JorritSchepers>dir</span><br>
@@ -59,15 +79,13 @@
     </div>
     
     <!-- Browser -->
-    <div [style.zIndex]="browserZIndex" class="browser-container"  (click)="moveTabToFront(BROWSER_ID)" *ngIf="showingBrowser" cdkDrag>
-        <div class="browser-header" cdkDragHandle>
+    <div [style.zIndex]="browserZIndex" class="tab-container" id="browser-container" (click)="moveTabToFront(BROWSER_ID)" *ngIf="showingBrowser" cdkDrag>
+        <div class="tab-header" id="browser-header" cdkDragHandle>
             <img src="https://handiggoed.nl/ontwikkelsite/wp-content/uploads/2015/12/IETS-400x400.jpg" alt="browser icon">
             <span>The little less dark web</span>
+            <img src="../../../assets/icons/close-icon-white.png" alt="close button" (click)="closeTab(BROWSER_ID)">
         </div>
-        <div class="browser-body">
-            <!-- <iframe src=asd *ngIf="currentSearchWordUrl != null"></iframe> -->
-            <!-- <iframe src="sanitizer.bypassSecurityTrustUrl(currentSearchWordUrl)" *ngIf="currentSearchWordUrl != null"></iframe> -->
-            <!-- <div class="browser-search-box" *ngIf="currentSearchWordUrl == null"> -->
+        <div class="tab-body" id="browser-body">
             <div class="browser-search-box">
                 <form [formGroup]="searchForm" (ngSubmit)="searchWord(searchForm.value)">
                     <input id="word" class="browser-search-input" type="text" formControlName="word" placeholder="Search for anything!" required>
@@ -77,9 +95,14 @@
     </div>
 
     <!-- Desktop Icons -->
-    <div class="desktop-icon" (click)="pictureId = 1">
+    <div class="desktop-icon" (click)="openPicture(1)">
         <img src="../../../assets/my-photos/1.jpg">
         <span>Jorrit.jpg</span>
+    </div>
+
+    <div class="desktop-icon" (click)="openPicture(2)">
+        <img src="../../../assets/my-photos/2.jpg">
+        <span>Jorrit in de bergen.jpg</span>
     </div>
 
     <div class="desktop-icon" (click)="openTab(TTT_ID)">
@@ -99,12 +122,12 @@
 
     <div class="desktop-icon" (click)="openTab(BROWSER_ID)">
         <img src="https://handiggoed.nl/ontwikkelsite/wp-content/uploads/2015/12/IETS-400x400.jpg">
-        <span>a light browser.exe</span>
+        <span>Browser.exe</span>
     </div>
 
     <!-- Taskbar -->
     <div class="taskbar-container">
-        <div class="taskbar-windows-logo">
+        <div class="taskbar-windows-logo" (click)="showingStart = !showingStart">
             <img src="../../../assets/icons/windows-logo-icon.png" alt="WindowsXP logo">
             <span><i><b>start</b></i></span>
         </div>

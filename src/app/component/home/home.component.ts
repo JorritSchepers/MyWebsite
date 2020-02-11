@@ -20,6 +20,7 @@ export class HomeComponent {
   showingWord: boolean = false;
   showingCmd: boolean = false;
   showingBrowser: boolean = false;
+  showingStart: boolean = false;
 
   pageZIndexes: number[] = [this.TTT_ID, this.WORD_ID, this.CMD_ID, this.BROWSER_ID];
   wordZIndex: number = 1;
@@ -40,6 +41,7 @@ export class HomeComponent {
   }
 
   moveTabToFront(id: number): void {
+    this.showingStart = false;
     this.pageZIndexes.splice(this.getCurrentIndex(id), 1);
     this.pageZIndexes.push(id);
     this.updateAllIndexes();
@@ -70,6 +72,23 @@ export class HomeComponent {
     }
   }
 
+  closeTab(id: number): void {
+    switch (id) {
+      case this.CMD_ID:
+        this.showingCmd = false;
+        break;
+      case this.WORD_ID:
+        this.showingWord = false;
+        break;
+      case this.TTT_ID:
+        this.showingTicTacToe = false;
+        break;
+      case this.BROWSER_ID:
+        this.showingBrowser = false;
+        break;
+    }
+  }
+
   private getCurrentIndex(id: number): number {
     for (let i=0;i<this.pageZIndexes.length;i++) {
       if (this.pageZIndexes[i] == id) return i;
@@ -80,5 +99,14 @@ export class HomeComponent {
   searchWord(formValue: any): void {
     this.currentSearchWordUrl = "https://www.google.com/search?q=" + formValue.word;
     window.open(this.currentSearchWordUrl);
+  }
+
+  logout(): void {
+    window.location.pathname = '/login'
+  }
+
+  openPicture(id: number): void {
+    this.showingStart = false;
+    this.pictureId = id;
   }
 }
