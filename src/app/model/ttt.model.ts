@@ -2,12 +2,19 @@ const EMPTY_PATH = "../../../assets/ttt/empty/"
 const CROSS_PATH = "../../../assets/ttt/cross/"
 const CIRCLE_PATH = "../../../assets/ttt/circle/"
 
+const EASY_DIF: number = 1
+const HARD_DIF: number = 2;
+
 export class TTTModel {
     fieldOfPaths: string[][];
     field: string[][];
     turn: string;
     playerWon: string = null;
     movesMade: number = 0;
+    difficulty: number = null;
+    // difficulty: number = EASY_DIF;
+    // difficulty: number = HARD_DIF;
+    algoMoves: number[][] = [[]];
 
     constructor() {
         this.turn = "cross"
@@ -39,7 +46,7 @@ export class TTTModel {
             this.playerWon = "draw";   
             return; 
         }
-        if (this.playerWon == null) this.algo();
+        if (this.playerWon == null && this.difficulty != null) this.algo();
     }
 
     private getImagePath(x: number, y: number): string {
@@ -113,18 +120,123 @@ export class TTTModel {
         this.playerWon = null;
         this.turn = "cross";
         this.movesMade = 0;
+        this.algoMoves = [[]];
         this.initField();
     }
 
     private algo(): void {
-        while(this.turn == "circle") this.AlgoChooseRandom();
+        while(this.turn == "circle") {
+            switch (this.difficulty) {
+                case EASY_DIF:
+                    this.easyAlgo();
+                    break;
+                case HARD_DIF: 
+                    this.hardAlgo();
+                    break;
+            }
+        }
     }
 
-    private AlgoChooseRandom(): void {
+    private easyAlgo(): void {
         let randomY: number = this.getRandomInt(this.field.length);
         let randomX: number = this.getRandomInt(this.field[0].length);
         if (this.field[randomY][randomX] != "empty") return;
         else this.clickedOn(randomX, randomY);
+    }
+
+    private hardAlgo(): void {
+        console.log(this.algoMoves);
+        let firstMove: string = null;
+
+        switch(this.movesMade) {
+            case 1: 
+                if (this.field[1][1] == 'cross') {
+                    firstMove = 'mid';
+                }
+
+                if (firstMove == 'mid') {
+                    let randomInt: number = this.getRandomInt(4);
+                    switch (randomInt) {
+                        case 0: 
+                            this.clickedOn(0, 0);
+                            this.algoMoves[0] = [0, 0];
+                            break;
+                        case 1: 
+                            this.clickedOn(2, 0);
+                            this.algoMoves[0] = [2, 0];
+                            break;
+                        case 2: 
+                            this.clickedOn(0, 2);
+                            this.algoMoves[0] = [0, 2];
+                            break;
+                        case 3: 
+                            this.clickedOn(2, 2);
+                            this.algoMoves[0] = [2, 2];
+                            break;
+                    }
+                    return;
+                }
+                this.easyAlgo();
+            case 3:
+                if (firstMove = 'mid') {
+                    let oppositeMoveOfFirstMove: number[] = this.getOppositeCoordsOf(this.algoMoves[0])
+                    if (this.field[oppositeMoveOfFirstMove[0]][oppositeMoveOfFirstMove[1]] == 'cross') {
+                        let randomCornerMoves: number[][] = this.getFreeMoves('corner');
+                        let randomInt: number = this.getRandomInt(randomCornerMoves.length);
+                        let chosenRandomCornerMove: number[] = randomCornerMoves[randomInt];
+                        this.clickedOn(chosenRandomCornerMove[0], chosenRandomCornerMove[1]);
+                    }
+                    return;
+                }
+                this.easyAlgo();
+            case 5:
+                if (this.field[0][1] == 'empty') this.clickedOn(0, 1);
+                this.easyAlgo();
+        }
+        return;
+    }
+
+    private getOppositeCoordsOf(list: number[]): number[] {
+        if (list[0] == 1 && list[1] == 1) {
+            return;
+        }
+        let temp: number[] = [-1, -1];
+
+        switch(list[0]) {
+            case 0: 
+                temp[0] = 2;
+                break;
+            case 1: 
+                temp[0] = 1;
+                break;
+            case 2: 
+                temp[0] = 0;
+                break;
+        }
+
+        switch(list[1]) {
+            case 0: 
+                temp[1] = 2;
+                break;
+            case 1: 
+                temp[1] = 1;
+                break;
+            case 2: 
+                temp[1] = 0;
+                break;
+        }
+        return temp;
+    }
+
+    private getFreeMoves(spot: string): number[][] {
+        let temp: number[][] = [[]];
+        if (spot = 'corner') {
+            if (this.field[0][0] == 'empty') temp.push([0,0]);
+            if (this.field[2][0] == 'empty') temp.push([2,0]);
+            if (this.field[0][2] == 'empty') temp.push([0,2]);
+            if (this.field[2][2] == 'empty') temp.push([2,2]);
+        }
+        return temp;
     }
 
     private getRandomInt(max: number): number {

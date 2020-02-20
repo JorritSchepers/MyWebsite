@@ -71,8 +71,9 @@ a:visited {
 
 .picture-container {
     display: flex;
-    align-items: center;
+    justify-content: center;
     position: absolute;
+    flex-direction: row;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.70);
@@ -90,6 +91,13 @@ a:visited {
     -khtml-user-select: none;
     -moz-user-select: none;
     -o-user-select: none;
+}
+
+.picture-container div {
+    margin-top: 2.5vh;
+    margin-right: 2.5vh;    
+    width: 5vh;
+    height: 5vh;
 }
 /*=============================================================================================================   Picture   */
 
@@ -129,6 +137,19 @@ a:visited {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+}
+   
+.browser-jorrit {
+    font-size: 14vh;
+    font-weight: bold;
+    font-family: Roboto;
+
+    /* No text or image selection */
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
 }
 
 .browser-search-box {
@@ -190,6 +211,23 @@ a:visited {
     width: 80%;
     margin: auto;
     margin-top: 4vh;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.word-page-text a {
+    color: blue;
+    text-decoration: underline;
+}
+
+.word-page-text a:hover {
+    font-size: 14px;
+}
+
+.word-page-text img {
+    width: 60%;
 }
 /*=============================================================================================================   Word   */
 
@@ -332,6 +370,22 @@ a:visited {
     font-family: Segoe UI;
     font-size: 2vh;
     margin-left: 5%;
+}
+
+.taskbar-time {
+    color: white;
+    font-family: Segoe UI;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    justify-content: flex-end;
+    margin-right: 1vh;
+
+    /* No text or image selection */
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
 }
 /*=============================================================================================================   Taskbar   */
 

@@ -18,6 +18,9 @@
     <!-- Picture -->
     <div class="picture-container" *ngIf="pictureId != 0" (click)="pictureId = 0">
         <img src="../../../assets/my-photos/{{pictureId}}.jpg" alt="picture of Jorrit Schepers">
+        <div>
+            <img src="../../../assets/icons/close-icon-white.png" alt="close button">
+        </div>
     </div>
 
     <!-- Tic Tac Toe -->
@@ -52,7 +55,10 @@
             <div class="word-toolbar"></div>
             <div class="word-page">
                 <div class="word-page-text">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem nihil in repellat cupiditate nostrum beatae quis enim? Ipsum temporibus quo reprehenderit non sunt perspiciatis exercitationem ut et assumenda numquam! Natus dolorem excepturi aliquid tenetur dolores, autem, eligendi minima vitae mollitia a eveniet enim quidem iure incidunt fugiat aut qui molestias neque quas sit, reiciendis veniam impedit. Tenetur laboriosam expedita ipsam?
+                    <img src="../../../assets/my-photos/2.jpg" alt="Photo is Jorrit Schepers"><br>
+                    <p>
+                        Hoi, mijn naam is Jorrit Schepers en ik ben tweede jaars ICT student op <a href="https://www.han.nl/">Hogeschool van Arnhem en Nijmegen</a>.
+                    </p>
                 </div>
             </div>
         </div>
@@ -83,9 +89,17 @@
         <div class="tab-header" id="browser-header" cdkDragHandle>
             <img src="https://handiggoed.nl/ontwikkelsite/wp-content/uploads/2015/12/IETS-400x400.jpg" alt="browser icon">
             <span>The little less dark web</span>
-            <img src="../../../assets/icons/close-icon-white.png" alt="close button" (click)="closeTab(BROWSER_ID)">
+            <img src="../../../assets/icons/close-icon-black.png" alt="close button" (click)="closeTab(BROWSER_ID)">
         </div>
         <div class="tab-body" id="browser-body">
+            <div class="browser-jorrit">
+                <span style="color: #4285F4;">J</span>
+                <span style="color: #EA4335;">o</span>
+                <span style="color: #FBBC06;">r</span>
+                <span style="color: #4285F4;">r</span>
+                <span style="color: #34A853;">i</span>
+                <span style="color: #EA4335;">t</span>
+            </div>
             <div class="browser-search-box">
                 <form [formGroup]="searchForm" (ngSubmit)="searchWord(searchForm.value)">
                     <input id="word" class="browser-search-input" type="text" formControlName="word" placeholder="Search for anything!" required>
@@ -122,7 +136,7 @@
 
     <div class="desktop-icon" (click)="openTab(BROWSER_ID)">
         <img src="https://handiggoed.nl/ontwikkelsite/wp-content/uploads/2015/12/IETS-400x400.jpg">
-        <span>Browser.exe</span>
+        <span>Brow-<br>ser.exe</span>
     </div>
 
     <!-- Taskbar -->
@@ -131,6 +145,8 @@
             <img src="../../../assets/icons/windows-logo-icon.png" alt="WindowsXP logo">
             <span><i><b>start</b></i></span>
         </div>
-        <div class="taskbar"></div>
+        <div class="taskbar">
+            <div class="taskbar-time"> {{currentTime | date: "short"}} </div>
+        </div>
     </div>
 </div>

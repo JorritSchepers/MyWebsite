@@ -31,13 +31,16 @@ export class HomeComponent {
   ttt: TTTModel = new TTTModel();
 
   searchForm: any;
-  currentSearchWordUrl: string;
+  currentTime: Date = new Date();
 
   constructor(private titleService: Title, private formBuilder: FormBuilder) {
     this.titleService.setTitle("Jorrit's Website | Home");
     this.searchForm = this.formBuilder.group({
       word: ''
     });
+    setInterval(() => {
+      this.currentTime = new Date();
+    }, 2);
   }
 
   moveTabToFront(id: number): void {
@@ -47,7 +50,7 @@ export class HomeComponent {
     this.updateAllIndexes();
   }
 
-  updateAllIndexes(): void {
+  private updateAllIndexes(): void {
     this.cmdZIndex = this.getCurrentIndex(this.CMD_ID)+1;
     this.wordZIndex = this.getCurrentIndex(this.WORD_ID)+1;
     this.tttZIndex = this.getCurrentIndex(this.TTT_ID)+1;
@@ -97,8 +100,8 @@ export class HomeComponent {
   }
 
   searchWord(formValue: any): void {
-    this.currentSearchWordUrl = "https://www.google.com/search?q=" + formValue.word;
-    window.open(this.currentSearchWordUrl);
+    let url = "https://www.google.com/search?q=" + formValue.word;
+    window.open(url);
   }
 
   logout(): void {
