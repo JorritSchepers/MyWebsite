@@ -5,10 +5,10 @@
     overflow: hidden;
 }
 
-::selection {
+/* ::selection {
     background-color: white;
     color: black
-}
+} */
 
 a {
     color: #cccccc;
@@ -204,7 +204,7 @@ a:visited {
     width: 80%;
     height: 100%;
     margin-top: 6vh;
-    background-color: whitesmoke;
+    background-color: white;
 }
 
 .word-page-text {
@@ -228,6 +228,19 @@ a:visited {
 
 .word-page-text img {
     width: 60%;
+}
+
+.word-page-text textarea {
+    width: 100%;
+    background-color: white;
+    border: none;
+    resize: none;
+    font-family: Segoe UI;
+    height: 100vh;
+}
+
+.word-page-text textarea:focus {
+    outline: 0;
 }
 /*=============================================================================================================   Word   */
 

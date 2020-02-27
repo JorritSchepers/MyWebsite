@@ -18,6 +18,8 @@ export class HomeComponent {
   searchForm: any;
   currentTime: Date = new Date();
 
+  inputValue: string = "Hoi, mijn naam is Jorrit Schepers en ik ben tweede jaars ICT student op Hogeschool van Arnhem en Nijmegen."
+
   constructor(private titleService: Title, private formBuilder: FormBuilder) {
     this.titleService.setTitle("Jorrit's Website | Home");
     this.searchForm = this.formBuilder.group({

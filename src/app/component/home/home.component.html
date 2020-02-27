@@ -47,7 +47,7 @@
 
     <!-- Word -->
     <div [style.zIndex]="windowManager.wordZIndex" class="tab-container" id="word-container" 
-         *ngIf="windowManager.showingWord" (click)="windowManager.moveTabToFront(windowManager.WORD_ID)" cdkDrag>
+         *ngIf="windowManager.showingWord" (click)="windowManager.moveTabToFront(windowManager.WORD_ID)" cdkDrag >
         <div class="tab-header" id="word-header" cdkDragHandle>
             <img src="../../../assets/icons/save-icon-whitepng.png" alt="Save icon">
             <span>Fancy wordpad</span>
@@ -58,9 +58,10 @@
             <div class="word-page">
                 <div class="word-page-text">
                     <img src="../../../assets/my-photos/2.jpg" alt="Photo is Jorrit Schepers"><br>
-                    <p>
+                    <!-- <p>
                         Hoi, mijn naam is Jorrit Schepers en ik ben tweede jaars ICT student op <a href="https://www.han.nl/">Hogeschool van Arnhem en Nijmegen</a>.
-                    </p>
+                    </p> -->
+                    <textarea>{{inputValue}}</textarea>
                 </div>
             </div>
         </div>
@@ -138,7 +139,7 @@
         <span>fancy word pad.exe</span>
     </div>
 
-    <div class="desktop-icon" (click)="windowManager.openTab(windowManager.BROWSER_ID)">
+    <div class="desktop-icon" (click)="windowManager.openTab(windowManager.BROWSER_ID)" cdkDrag>
         <img src="https://handiggoed.nl/ontwikkelsite/wp-content/uploads/2015/12/IETS-400x400.jpg">
         <span>Brow-<br>ser.exe</span>
     </div>
