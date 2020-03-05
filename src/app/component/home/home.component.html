@@ -76,15 +76,23 @@
             <img src="../../../assets/icons/close-icon-white.png" alt="close button" (click)="windowManager.closeTab(windowManager.CMD_ID)">
         </div>
         <div class="tab-body" id="cmd-body">
-            <span>C:\Users\JorritSchepers>_</span><br>
-            <br>
-            <span>C:\Users\JorritSchepers>dir</span><br>
+            <div class=cmd-line>
+                <span>C:\Users\JorritSchepers>&nbsp;</span>
+                <form [formGroup]="cmdForm" (ngSubmit)="enterCommand(cmdForm.value)">
+                    <input id="cmd" type="text" formControlName="cmd">
+                </form>
+            </div>
+            <div class=cmd-line *ngIf="currentCommand">
+                {{currentCommand}}
+            </div>
+            <!-- <br> -->
+            <!-- <span>C:\Users\JorritSchepers>dir</span><br>
             <br>
             <span>Directory of C:\Users\JorritSchepers</span><br>
             <br>
             <a routerLink="/about-me" routerLinkActive="active"><span>07/01/2020 23:31 &nbsp; &lt;DIR&gt; &nbsp;&nbsp;&nbsp; about-me</span></a><br>
             <a routerLink="/my-projects" routerLinkActive="active"><span>10/01/2020 19:01 &nbsp; &lt;DIR&gt; &nbsp;&nbsp;&nbsp; my-projects</span></a><br>
-            <a routerLink="/contact-me" routerLinkActive="active"><span>15/01/2020 03:54 &nbsp; &lt;DIR&gt; &nbsp;&nbsp;&nbsp; contact-me</span></a><br>
+            <a routerLink="/contact-me" routerLinkActive="active"><span>15/01/2020 03:54 &nbsp; &lt;DIR&gt; &nbsp;&nbsp;&nbsp; contact-me</span></a><br> -->
         </div>
     </div>
     
@@ -107,7 +115,7 @@
             </div>
             <div class="browser-search-box">
                 <form [formGroup]="searchForm" (ngSubmit)="searchWord(searchForm.value)">
-                    <input id="word" class="browser-search-input" type="text" formControlName="word" placeholder="Search for anything!" required>
+                    <input id="word" class="browser-search-input" type="text" formControlName="word" placeholder="Try searching for 'Jorrit Schepers'!" required>
                 </form>
             </div>
         </div>
@@ -136,13 +144,35 @@
 
     <div class="desktop-icon" (click)="windowManager.openTab(windowManager.WORD_ID)">
         <img src="../../../assets/icons/save-icon-whitepng.png">
-        <span>fancy word pad.exe</span>
+        <span>about me.docx</span>
     </div>
 
-    <div class="desktop-icon" (click)="windowManager.openTab(windowManager.BROWSER_ID)" cdkDrag>
+    <div class="desktop-icon" (click)="windowManager.openTab(windowManager.BROWSER_ID)">
         <img src="https://handiggoed.nl/ontwikkelsite/wp-content/uploads/2015/12/IETS-400x400.jpg">
         <span>Brow-<br>ser.exe</span>
     </div>
+
+    <div class="desktop-icon">
+        <a href="https://www.linkedin.com/in/jorrit-schepers-b9809317b/" target="_blank">
+            <img src="../../../assets/icons/linked-in-logo.png">
+            <span>Linked-<br>In.url</span>
+        </a>
+    </div>
+
+    <div class="desktop-icon">
+        <a href="https://github.com/JorritSchepers" target="_blank">
+            <img src="../../../assets/icons/github-logo.png">
+            <span>GitHub.url</span>
+        </a>
+    </div>
+
+    <div class="desktop-icon">
+        <a href="https://www.instagram.com/jorrit.schepers/" target="_blank">
+            <img src="../../../assets/icons/instagram-logo.png">
+            <span>Insta-<br>gram.url</span>
+        </a>
+    </div>
+    
 
     <!-- Taskbar -->
     <div class="taskbar-container">

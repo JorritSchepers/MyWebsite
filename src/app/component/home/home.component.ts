@@ -16,7 +16,9 @@ export class HomeComponent {
   ttt: TTTModel = new TTTModel();
 
   searchForm: any;
+  cmdForm: any;
   currentTime: Date = new Date();
+  currentCommand: string;
 
   inputValue: string = "Hoi, mijn naam is Jorrit Schepers en ik ben tweede jaars ICT student op Hogeschool van Arnhem en Nijmegen."
 
@@ -25,6 +27,10 @@ export class HomeComponent {
     this.searchForm = this.formBuilder.group({
       word: ''
     });
+    this.cmdForm = this.formBuilder.group({
+      cmd: ''
+    });
+
     setInterval(() => {
       this.currentTime = new Date();
     }, 2);
@@ -42,5 +48,9 @@ export class HomeComponent {
   openPicture(id: number): void {
     this.windowManager.showingStart = false;
     this.pictureId = id;
+  }
+
+  enterCommand(formValue: any): void {
+    this.currentCommand = formValue.cmd;
   }
 }

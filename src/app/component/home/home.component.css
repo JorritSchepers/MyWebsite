@@ -5,34 +5,24 @@
     overflow: hidden;
 }
 
-/* ::selection {
-    background-color: white;
-    color: black
-} */
-
 a {
-    color: #cccccc;
     text-decoration: none;
-}
-
-a:hover {
-    font-size: 1.9vh;
-    color: white;
 }
 
 a:visited {
     color: white;
-    text-decoration: none;
 }
 
 .container {
     position: absolute;
     top: 0%;
     left: 0%;
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     background-color: black;
     background-image: url(../../../assets/windows-xp-wallpaper.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .tab-container {
@@ -117,6 +107,40 @@ a:visited {
     background-color: #0C0C0C;
     color: #cccccc;
     font-family: Courier New;
+    font-size: 1.7vh;
+}
+
+#cmd-body a {
+    color: #cccccc;
+}
+
+#cmd-body a:hover {
+    font-size: 1.9vh;
+    color: white;
+}
+
+#cmd-body a:visited {
+    color: #cccccc;
+    text-decoration: none;
+}
+
+#cmd-body input {
+    background-color: #0C0C0C;
+    border: none;
+    height: 1.8vh;
+    width: 40vh;
+    color: #cccccc;
+    font-family: Courier New;
+    font-size: 1.8vh;
+}
+
+#cmd-body input:focus {
+    outline: 0;
+}
+
+.cmd-line {
+    display: flex;
+    flex-direction: row;
 }
 /*=============================================================================================================   CMD   */
 
@@ -320,6 +344,18 @@ a:visited {
 .desktop-icon img {
     width: 60%;
     margin-bottom: 1vh;
+}
+
+.desktop-icon a {
+    cursor: default;
+    font-size: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.desktop-icon span {
+    cursor: default;
 }
 /*=============================================================================================================   Desktop Icon   */
 

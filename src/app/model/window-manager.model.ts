@@ -6,7 +6,7 @@ export class WindowManagerModel {
     
     showingTicTacToe: boolean = false;
     showingWord: boolean = true;
-    showingCmd: boolean = false;
+    showingCmd: boolean = true;
     showingBrowser: boolean = false;
     showingStart: boolean = false;
 
